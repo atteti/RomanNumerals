@@ -15,16 +15,9 @@ public class RomanNumerals {
 	
 	public int convertToInteger(final String numbers) throws RomanNumeralsException {
 		
-		int sum = 0;
-		int index = 0;
-		int countI = 0;
-		int countX = 0;
-		int countC = 0;
-		int countM = 0;
-		int countV = 0;
-		int countL = 0;
-		int countD = 0;
-				
+		int sum, index, countI, countX, countC, countM, countV, countL, countD;
+		sum = index = countI = countX = countC = countM = countV = countL = countD = 0;
+					
 		while (index < numbers.length()) {
 			
 			char nextChar = '\n';
@@ -36,48 +29,27 @@ public class RomanNumerals {
 			switch (numbers.charAt(index)) {
 				case I: 
 					countI++;
-					if (sumMarkI(nextChar) == 0) {
-						throw new RomanNumeralsException("Invalid argument, next to I");
-					} else {
-						sum += sumMarkI(nextChar);
-					}
+					sum += sumMarkI(nextChar);
 					break;
 				case V:
 					countV++;
-					if (sumMarkV(nextChar) == 0) {
-						throw new RomanNumeralsException("Invalid argument, next to V");
-					} else {
-						sum += sumMarkV(nextChar);
-					}
+					sum += sumMarkV(nextChar);
 					break;
 				case X:
 					countX++;
-					if (sumMarkX(nextChar) == 0) {
-						throw new RomanNumeralsException("Invalid argument, next to X");
-					} else {
-						sum += sumMarkX(nextChar);
-					}
+					sum += sumMarkX(nextChar);
 					break;
 				case L:
 					countL++;
-					if (sumMarkL(nextChar) == 0) {
-						throw new RomanNumeralsException("Invalid argument, next to L");
-					} else {
-						sum += sumMarkL(nextChar);
-					}
+					sum += sumMarkL(nextChar);
 					break;
 				case C:
 					countC++;
-					if (sumMarkC(nextChar) == 0) {
-						throw new RomanNumeralsException("Invalid argument, next to C");
-					} else {
-						sum += sumMarkC(nextChar);
-					}
+					sum += sumMarkC(nextChar);
 					break;
 				case D:
 					countD++;
-					if (nextChar != '\n' && 
-						nextChar == M) {
+					if (nextChar == M) {
 						throw new RomanNumeralsException("Invalid argument, next to D");
 					} else {
 						sum += 500;
@@ -106,7 +78,7 @@ public class RomanNumerals {
 		}
 	}
 	
-	private int sumMarkI(final char character) {
+	private int sumMarkI(final char character) throws RomanNumeralsException {
 		
 		int sum = 0;
 		
@@ -119,8 +91,7 @@ public class RomanNumerals {
 			case C:
 			case D:
 			case M:
-				return 0;
-				
+				throw new RomanNumeralsException("Invalid argument, next to I");
 			default: 
 				sum += 1;
 				break;
@@ -129,7 +100,7 @@ public class RomanNumerals {
 		return sum;
 	}
 			
-	private int sumMarkV(final char character) {
+	private int sumMarkV(final char character) throws RomanNumeralsException {
 		
 		int sum = 0;
 		
@@ -139,7 +110,7 @@ public class RomanNumerals {
 			case C:
 			case D:
 			case M:
-				return 0;
+				throw new RomanNumeralsException("Invalid argument, next to V");
 			default: 
 				sum += 5;
 				break;
@@ -148,7 +119,7 @@ public class RomanNumerals {
 		return sum;
 	}
 	
-	private int sumMarkX(final char character) {
+	private int sumMarkX(final char character) throws RomanNumeralsException {
 		
 		int sum = 0;
 		
@@ -159,7 +130,7 @@ public class RomanNumerals {
 				break;
 			case D:
 			case M:
-				return 0;
+				throw new RomanNumeralsException("Invalid argument, next to X");
 			default: 
 				sum += 10;
 				break;
@@ -168,7 +139,7 @@ public class RomanNumerals {
 		return sum;
 	}
 	
-	private int sumMarkL(final char character) {
+	private int sumMarkL(final char character) throws RomanNumeralsException {
 		
 		int sum = 0;
 		
@@ -176,7 +147,7 @@ public class RomanNumerals {
 			case C:
 			case D:
 			case M:
-				return 0;	
+				throw new RomanNumeralsException("Invalid argument, next to L");	
 			default: 
 				sum += 50;
 				break;
